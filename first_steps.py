@@ -6,45 +6,30 @@ def random_walk(n):
     random_list = list()
 
     #Coordinates
-    x = 0
-    y = 0
+    start_position = random.randrange(10)
+    random_list.append(start_position)
+    
     for i in range(n):
                 
-        step = random.choice(['N', 'S', 'E', 'W'])
-
-        if step == 'N':
-            y += 1
-            random_list.append((x,y))
-        elif step == 'S':
-            y -= 1
-            random_list.append((x,y))
-        elif step == 'E':
-            x -= 1
-            random_list.append((x,y))
-        else:
-            x += 1
-            random_list.append((x,y))
-
-        
+        movement = -1 if random.random() > 0.5 else 1
+        value = random_list[i] + movement
+        random_list.append(value)
+                
 
     return random_list
 
 def plot_walk(n):
     walks = random_walk(n)
-    print(walks)
-    x = [x for x, y in walks]
-    y = [y for x, y in walks]
 
-    plt.plot(x,y)
+
+    random.seed(1)
+    plt.plot(walks)
     plt.show()
 
-track_1 = plot_walk(10)
+# track_1 = plot_walk(500)
 
-# one = random_walk(10)
-# print(one)
-# for x, y in one:
-#     print('printing x',x)
-#     print('printing y', y)
+for i in range(3):
+    plot_walk(200)
     
 
 
